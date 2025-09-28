@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Criado com a Lasy",
-  description: "Projeto criado com Lasy AI",
+  title: "Beykam Modas",
+  description: "Projeto criado por Beykam Modas ",
 };
 
 export default function RootLayout({
