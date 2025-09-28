@@ -2,13 +2,11 @@ name: Build and Deploy Next.js to Hostinger FTP
 
 on:
   push:
-    branches:
-      - main   # dispara sempre que fizer push na branch main
+    branches: [ "main" ]
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout código
         uses: actions/checkout@v4
@@ -21,18 +19,20 @@ jobs:
       - name: Instalar dependências
         run: npm ci
 
-      - name: Build do projeto
+      - name: Build do projeto (gera a pasta out/)
         run: npm run build
 
-      - name: Exportar site estático
-        run: npm run export
+      - name: Conferir pasta out
+        run: ls -la out
 
       - name: Upload para Hostinger via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: ${{ secrets.FTP_PORT }}
-          local-dir: ./out
+          protocol: ftps          # se seu servidor não aceitar TLS, troque para: ftp
+          local-dir: out/
           server-dir: ${{ secrets.FTP_PATH }}
+          dangerous-clean-slate: true
