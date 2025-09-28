@@ -2,8 +2,9 @@ name: Build and publish static site (Next.js)
 
 on:
   push:
-    branches: [ main ]
-
+    branches: [ main ]Z
+permissions:
+  contents: write
 jobs:
   build:
     runs-on: ubuntu-latest
