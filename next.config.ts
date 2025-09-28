@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // necessário para exportar HTML estático
+  output: 'export',
   devIndicators: false, // Remove widget de desenvolvimento Next.js
   
   // Ignorar erros durante build (compatibilidade Vercel)
@@ -13,6 +15,7 @@ const nextConfig: NextConfig = {
   
   // Configuração de imagens para principais provedores
   images: {
+    unoptimized: true, // 👈 necessário para export estático
     remotePatterns: [
       // Unsplash - Banco de imagens gratuitas
       {
