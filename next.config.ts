@@ -3,8 +3,6 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // necessário para exportar HTML estático
   output: 'export',
-  devIndicators: false, // Remove widget de desenvolvimento Next.js
-  
   // Ignorar erros durante build (compatibilidade Vercel)
   eslint: {
     ignoreDuringBuilds: true,
